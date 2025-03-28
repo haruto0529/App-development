@@ -18,6 +18,7 @@ RUN bundle install
 #ホストマシン（ローカル環境）のディレクトリ内のファイルをDockerコンテナ内の指定した場所にコピーする処理
 COPY . .
 #環境変数でポート番号を指定
+RUN bundle exec rails assets:precompile
 ENV PORT=3000
 #ポート3000を開放
 EXPOSE 3000
