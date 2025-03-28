@@ -14,6 +14,7 @@ COPY Gemfile Gemfile.lock ./
 RUN gem install bundler -v $(grep -A1 "BUNDLED WITH" Gemfile.lock | tail -n1)
 RUN bundle install
 COPY . .
+RUN bundle exec rails assets:precompile
 ENV PORT=3000
 EXPOSE 3000
 CMD ["bundle", "exec", "puma", "-b", "tcp://0.0.0.0:3000"]
