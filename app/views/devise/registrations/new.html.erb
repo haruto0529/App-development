@@ -1,0 +1,55 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduce %><br />
+    <%= f.text_field :introduce, autofocus: true, autocomplete: "introduce" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select :gender, [['男性', 1], ['女性', 2], ['その他', 3]], {}, autofocus: true, autocomplete: "gender" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :experience_history %><br />
+    <%= f.text_field :experience_history, autofocus: true, autocomplete: "experience_history" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :prefectures %><br />
+    <%= f.select :prefectures, User::PREFECTURES.map { |p| [p, p] }, { include_blank: "選択してください" }, autofocus: true, autocomplete: "prefectures" %>
+  </div>
+
+  <br>
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
