@@ -49,6 +49,15 @@ gem 'jquery-rails'
 
 gem 'sassc-rails'
 
+#動画のアップローダ
+gem 'carrierwave'
+
+#外部のストレージ(Amazon S3)へのアップロードを可能に
+gem 'fog-aws'
+
+#環境変数を管理
+gem 'dotenv-rails'
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
