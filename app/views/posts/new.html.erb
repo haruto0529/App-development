@@ -1,0 +1,25 @@
+<h2>新しい投稿</h2>
+
+<%= form_with(model: @post, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :title, "タイトル" %><br />
+    <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image_url, "動画URL" %><br />
+    <%= f.file_field :image_url, autofocus: true, autocomplete: "image_url" ,:accept => 'video/*'%>
+  </div>
+
+  <div class="field">
+    <%= f.label :image_introduce, "説明" %><br />
+    <%= f.text_area :image_introduce, autofocus: true, autocomplete: "image_introduce", style: "width: 100%; height: 150px;" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "投稿する", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-secondary" %>
+
