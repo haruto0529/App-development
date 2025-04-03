@@ -99,4 +99,6 @@ Rails.application.configure do
   config.hosts << "172.19.17.194"
   config.hosts << "172.19.14.2"
 
+  config.active_storage.service = :amazon
+
 end
