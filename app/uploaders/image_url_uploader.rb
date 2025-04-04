@@ -1,4 +1,6 @@
 class ImageUrlUploader < CarrierWave::Uploader::Base
+  include CarrierWave::ImageUrl
+  include CarrierWave::MiniMagick
   # Include RMagick, MiniMagick, or Vips support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -6,6 +8,22 @@ class ImageUrlUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # developmentとtest以外はS3を使用
+
+  # 動画からサムネイル生成
+  version :thumb do
+    process :generate_video_thumbnail
+  end
+
+  def generate_video_thumbnail
+    video = ::FFMPEG::Movie.new(file.path)
+    # 動画の最初のフレームからサムネイルを生成（0秒目）
+    video.screenshot("#{Rails.root}/public/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}/thumbnail.jpg", seek_time: 0)
+  end
+
+  def extension_white_list
+    %w(mp4 mov avi)
+  end
+
   if Rails.env.development? || Rails.env.test? 
     storage :file
   else
