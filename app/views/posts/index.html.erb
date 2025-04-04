@@ -1,0 +1,13 @@
+<h1>投稿一覧</h1>
+
+<%= link_to "新規投稿", new_post_path, class: "btn" %>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <strong><%= post.title %></strong><br>
+      <%= link_to "詳細", post_path(post) %><br>
+      <h5><%= post.image_introduce %></h5>
+    </li>
+  <% end %>
+</ul>
