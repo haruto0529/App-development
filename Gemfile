@@ -52,6 +52,8 @@ gem 'sassc-rails'
 #動画のアップローダ
 gem 'carrierwave'
 
+gem 'streamio-ffmpeg'
+
 #外部のストレージ(Amazon S3)へのアップロードを可能に
 gem 'fog-aws'
 
