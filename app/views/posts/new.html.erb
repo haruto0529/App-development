@@ -1,13 +1,13 @@
 <h2>新しい投稿</h2>
 
-<%= form_with(model: @post, local: true) do |f| %>
+<%= form_with(model: @post, local: true, html: { multipart: true }) do |f| %>
   <div class="field">
     <%= f.label :title, "タイトル" %><br />
     <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
   </div>
 
   <div class="field">
-    <%= f.label :image_url, "動画URL" %><br />
+    <%= f.label :image_url, "動画を選択" %><br />
     <%= f.file_field :image_url, autofocus: true, autocomplete: "image_url" ,:accept => 'video/*'%>
   </div>
 
