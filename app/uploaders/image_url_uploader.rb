@@ -1,4 +1,6 @@
 class ImageUrlUploader < CarrierWave::Uploader::Base
+  require 'streamio-ffmpeg'
+
   # Include RMagick, MiniMagick, or Vips support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -6,17 +8,54 @@ class ImageUrlUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # developmentとtest以外はS3を使用
-  if Rails.env.development? || Rails.env.test? 
+
+  if Rails.env.development? || Rails.env.test?
     storage :file
   else
     storage :fog
   end
 
+  # 動画からサムネイル生成
+  version :thumb do
+    process :generate_video_thumbnail
+  end
+
+  def store_dir
+    "uploads/post/image_url/#{model.id}"
+  end
+
+  def extension_allowlist
+    %w(mp4 mov avi)
+  end
+
+  version :thumb do
+    process :generate_video_thumbnail
+
+    def full_filename(for_file = nil)
+      "thumbnail.jpg"
+    end
+  end
+
+  def generate_video_thumbnail
+    cache_stored_file! unless cached?
+    tmpfile = File.join(File.dirname(current_path), "tmp_video")
+
+    File.rename(current_path, tmpfile)
+
+    movie = FFMPEG::Movie.new(tmpfile)
+    screenshot_path = File.join(File.dirname(current_path), "thumbnail.jpg")
+
+    movie.screenshot(screenshot_path, seek_time: 0, resolution: '320x240')
+
+    File.rename(screenshot_path, current_path)
+    file.instance_variable_set(:@content_type, "image/jpeg")
+
+    File.delete(tmpfile) if File.exist?(tmpfile)
+  end
+
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
