@@ -31,7 +31,7 @@ class ImageUrlUploader < CarrierWave::Uploader::Base
   version :thumb do
     process :generate_video_thumbnail
 
-    def full_filename(for_file = model.image_url.file)
+    def full_filename(for_file = nil)
       "thumbnail.jpg"
     end
   end
