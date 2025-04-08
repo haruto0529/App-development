@@ -11,7 +11,6 @@ CarrierWave.configure do |config|
       region: ENV['AWS_REGION'],
       path_style: true,
     }
-    config.fog_directory  = ENV['AWS_BUCKET']
   else
     config.storage = :file
     config.enable_processing = Rails.env.development?
