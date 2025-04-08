@@ -43,8 +43,8 @@ class ImageUrlUploader < CarrierWave::Uploader::Base
     File.rename(current_path, tmpfile)
 
     movie = FFMPEG::Movie.new(tmpfile)
+    screenshot_path = File.join(File.dirname(current_path), "thumbnail.jpg")
 
-    screenshot_path = current_path + ".jpg"
     movie.screenshot(screenshot_path, seek_time: 0, resolution: '320x240')
 
     File.rename(screenshot_path, current_path)
