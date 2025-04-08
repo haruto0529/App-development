@@ -9,8 +9,9 @@ CarrierWave.configure do |config|
       provider: 'AWS',
       aws_access_key_id: ENV['AWS_ACCESS_KEY'],
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-      region: 'STEP2で作成したバケットのリージョン',
-      path_style: true
+      region: ENV['AWS_REGION'],,
+      path_style: true,
+      config.fog_directory = ENV['AWS_BUCKET']
     }
   end
   #日本語ファイル名の設定
