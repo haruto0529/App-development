@@ -8,7 +8,8 @@ RUN apt-get update -qq && apt-get install -y \
   libpq-dev \
   nodejs \
   yarn \
-  ffmpeg
+  ffmpeg && \
+  rm -rf /var/lib/apt/lists/*
 #作業ディレクトリとして/myappを指定、移行"./"と指す
 WORKDIR /myapp
 COPY Gemfile Gemfile.lock ./
