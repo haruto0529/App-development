@@ -7,12 +7,6 @@
     <li>
       <strong><%= post.title %></strong><br>
       <%= link_to "詳細", post_path(post) %><br>
-      <% if post.image_url? %>
-        <%= image_tag post.image_url.thumb.url %>
-      <% else %>
-        <%= image_tag "default_thumbnail.jpg" %>
-      <% end %>
-      <br>
       <h5><%= post.image_introduce %></h5>
     </li>
   <% end %>
