@@ -6,6 +6,10 @@
   <% @posts.each do |post| %>
     <li>
       <strong><%= post.title %></strong><br>
+      <video width="640" height="360" controls>
+        <source src="<%= post.image_url %>" type="video/mp4">
+      </video>
+      <br>
       <%= link_to "詳細", post_path(post) %><br>
       <h5><%= post.image_introduce %></h5>
     </li>
