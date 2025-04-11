@@ -22,6 +22,14 @@ class ImageUrlUploader < CarrierWave::Uploader::Base
     ['video/mp4', 'video/quicktime', 'video/x-msvideo']
   end
 
+  def filename
+    if original_filename.present?
+      timestamp = Time.now.to_i
+      ext = File.extname(original_filename)
+      "video_#{timestamp}#{ext}"
+    end
+  end
+
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
