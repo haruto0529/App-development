@@ -89,3 +89,6 @@ end
 gem 'devise'
 
 gem "dockerfile-rails", ">= 1.7", group: :development
+
+gem 'mime-types'
+

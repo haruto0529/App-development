@@ -18,8 +18,8 @@ class ImageUrlUploader < CarrierWave::Uploader::Base
     "uploads/post/image_url/#{model.id}"
   end
 
-  def extension_allowlist
-    %w(mp4 mov avi)
+  def content_type_allowlist
+    ['video/mp4', 'video/quicktime', 'video/x-msvideo']
   end
 
 
