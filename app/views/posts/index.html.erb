@@ -2,12 +2,30 @@
 
 <%= link_to "新規投稿", new_post_path, class: "btn" %>
 
-<ul>
+<div class="post-grid">
   <% @posts.each do |post| %>
-    <li>
+    <div class="post-card">
       <strong><%= post.title %></strong><br>
+      <video width="100%" controls>
+        <source src="<%= post.image_url %>" type="video/mp4">
+      </video>
       <%= link_to "詳細", post_path(post) %><br>
       <h5><%= post.image_introduce %></h5>
-    </li>
+    </div>
   <% end %>
-</ul>
+</div>
+
+<style>
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2列 */
+    gap: 20px;
+  }
+
+  .post-card {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+</style>

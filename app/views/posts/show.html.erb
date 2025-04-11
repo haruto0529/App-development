@@ -1,0 +1,17 @@
+<h1>投稿詳細</h1>
+
+
+<h1><%= @post.title %></h1>
+
+<video width="640" height="360" controls>
+  <source src="<%= @post.image_url %>" type="video/mp4">
+</video>
+
+<p><strong>紹介文:</strong> <%= @post.image_introduce %></p>
+
+<p><strong>投稿者:</strong> <%= @post.user.name if @post.user %></p>
+<p><strong>投稿日:</strong> <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+<%= form_with(model: @post, method: :delete, local: true) do %>
+  <%= submit_tag "削除", data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+<% end %>
+  
