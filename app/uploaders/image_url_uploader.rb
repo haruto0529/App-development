@@ -27,6 +27,9 @@ class ImageUrlUploader < CarrierWave::Uploader::Base
       timestamp = Time.now.to_i
       ext = File.extname(original_filename)
       "video_#{timestamp}#{ext}"
+    else
+      # original_filenameがnilや空の場合、デフォルトのファイル名を返す
+      "default_video.mp4"
     end
   end
 
