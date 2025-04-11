@@ -11,3 +11,7 @@
 
 <p><strong>投稿者:</strong> <%= @post.user.name if @post.user %></p>
 <p><strong>投稿日:</strong> <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+<%= form_with(model: @post, method: :delete, local: true) do %>
+  <%= submit_tag "削除", data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+<% end %>
+  
