@@ -7,4 +7,13 @@ module ApplicationHelper
       link_to name, path, class: 'channel_name'
     end
   end
+
+  def sidebar_link_item_brue(name, path)
+    class_name = 'channel_brue'
+    class_name << ' active' if current_page?(path)
+
+    content_tag :li, class:class_name do
+      link_to name, path, class: 'channel_name'
+    end
+  end
 end

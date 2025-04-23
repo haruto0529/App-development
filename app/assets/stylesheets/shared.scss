@@ -56,16 +56,23 @@
   
   .listings_channels {
     margin: 1rem 0 2rem;
+    display: flex;
+    justify-content: center;
   }
   
   .channel_list {
     padding: 0;
+    text-align: center;
     list-style-type: none;
     text-align: left;
     color: #ab9ba9;
   }
   
   .channel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     height: 24px;
     line-height: 24px;
     border-top-right-radius: 0.25rem;
@@ -88,3 +95,26 @@
     background: #4c9689;
   }
   
+  .channel_brue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 0.25rem;
+    padding: 0 1rem;
+    height: 40px;
+    background-color: #0d6efd;
+    color: #ffffff;
+    a {
+      color: #f3f3f3;
+      text-decoration: none;
+      display: inline-block;
+    }
+    a:hover {
+      color: #5f01f7;
+    }
+  }
+  
+  .channel.active {
+    background: #4c9689;
+  }
