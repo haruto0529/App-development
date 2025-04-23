@@ -96,6 +96,7 @@
   }
   
   .channel_brue {
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,8 +114,4 @@
     a:hover {
       color: #5f01f7;
     }
-  }
-  
-  .channel.active {
-    background: #4c9689;
   }
