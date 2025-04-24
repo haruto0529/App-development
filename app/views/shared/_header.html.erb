@@ -2,7 +2,17 @@
   <%= link_to 'skechy_videos', root_path, class: 'navbar-brand' %>
   <nav>
     <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary' %></li>
+      <% if user_signed_in? %>
+        <li>
+        <%= form_for(:destroy_user_session, url: destroy_user_session_path, method: :delete, html: { class: 'logout-form' }) do |f| %>
+          <%= f.submit 'Logout', class: 'btn btn-danger' %>
+        <% end %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary' %>
+        </li>
+      <% end %>
     </ul>
   </nav>
 </header>
