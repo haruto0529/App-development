@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'categories/index'
+  get 'categories/edit'
   get 'posts/new'
   get 'posts/create'
   devise_for :users
