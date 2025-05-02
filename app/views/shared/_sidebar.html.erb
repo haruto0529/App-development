@@ -2,8 +2,9 @@
   <div class="listings_channels">
     <ul class="channel_list">
       <%= sidebar_link_item_brue('新規投稿', new_post_path) %>
-      <%= sidebar_link_item('タイトルへ', root_path) %>
-      <%= sidebar_link_item('タイトルへ', root_path) %>
+      <%= sidebar_link_item('スケートボード', posts_path(category: 'skateboarding')) %>
+      <%= sidebar_link_item('スノーボード', posts_path(category: 'snowboarding')) %>
+      <%= sidebar_link_item('サーフィン', posts_path(category: 'surfing')) %>
     </ul>
   </div>
 </div>
