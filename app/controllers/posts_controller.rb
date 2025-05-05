@@ -4,10 +4,6 @@ class PostsController < ApplicationController
   def index
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
-
-    if params[:category].present?
-      @posts = @posts.where(category: Post.categories[params[:category]])
-    end
   end
 
   def show
