@@ -1,15 +1,16 @@
 
 <%= render'shared/sidebar' %>
 
-<%= search_form_for @q, url: posts_path, method: :get do |f| %>
-  <%= f.search_field :title_or_image_introduce_cont %>
-
-  <% Post.categories.each do |key, _| %>
-    <%= radio_button_tag 'q[category_eq][]', key, params.dig(:q, :category_in)&.include?(key) %>
-    <%= label_tag "q_category_in_#{key}", key.humanize %><br>
+<div class="search-form">
+  <%= search_form_for @q, url: posts_path, method: :get do |f| %>
+    <% Post.categories.each do |key, _| %>
+      <%= radio_button_tag 'q[category_eq][]', key, params.dig(:q, :category_in)&.include?(key) %>
+      <%= label_tag "q_category_in_#{key}", key.humanize %>
+    <% end %>
+    <%= f.search_field :title_or_image_introduce_cont %>
+    <%= f.submit '検索' %>
   <% end %>
-  <%= f.submit '検索' %>
-<% end %>
+</div>
 
 <div class="post-grid">
   <% @posts.each do |post| %>
