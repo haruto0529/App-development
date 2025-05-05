@@ -3,11 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    if params[:q].present?
-      @posts = @q.result(distinct: true)
-    else
-      @posts = Post.all
-    end
+    @posts = @q.result(distinct: true)
   end
 
   def show
