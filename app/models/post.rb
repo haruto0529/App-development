@@ -3,6 +3,7 @@ class Post < ApplicationRecord
 
   mount_uploader :image_url, ImageUrlUploader
   belongs_to :user
+  has_many :likes, dependent: :destroy
 
   validates :category, presence: true
 
@@ -12,5 +13,9 @@ class Post < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     ["user"]
+  end
+
+  def liked_by?(user)
+    likes.exists?(user_id : user.id)
   end
 end
