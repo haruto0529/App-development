@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  get 'posts/new'
-  get 'posts/create'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   resources :posts do
-    resource :likes, only: [:create, :destoroy]
+    resource :likes, only: [:create, :destroy]
   end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -4,6 +4,17 @@
 <video width="640" height="360" controls>
   <source src="<%= @post.image_url %>" type="video/mp4">
 </video>
+</br>
+
+<% if @post.liked_by?(current_user) %>
+  <%= button_to post_likes_path(@post), method: :delete, class: "like-button" do %>
+    ❤️ <%= @post.likes.count %> いいねを取り消す
+  <% end %>
+<% else %>
+  <%= button_to post_likes_path(@post), method: :post, class: "like-button" do %>
+    🤍 <%= @post.likes.count %> いいねする
+  <% end %>
+<% end %>
 
 <p><strong>紹介文:</strong> <%= @post.image_introduce %></p>
 
@@ -12,4 +23,3 @@
 <%= form_with(model: @post, method: :delete, local: true) do %>
   <%= submit_tag "削除", data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
 <% end %>
-  
